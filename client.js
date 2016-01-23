@@ -127,6 +127,10 @@ function createDetail(title, data, parent) {
           }, incrementor.interval);
           timers.push(t);
         }
+        
+        var p = document.createElement('p');
+        detail.appendChild(p);
+        p.textContent = title;
 
         showInfo('午場', data.Afternoon);
         showInfo('晚場', data.Evening);

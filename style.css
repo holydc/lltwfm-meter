@@ -148,10 +148,14 @@ body {
   z-index: 1;
 }
 
+.detail.expanded p {
+  margin-top: 200px;
+  text-align: center;
+}
+
 .detail.expanded div {
   display: inline-block;
   margin-left: 100px;
-  margin-top: 200px;
   text-align: center;
   width: 200px;
 }

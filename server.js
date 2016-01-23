@@ -47,10 +47,26 @@ function handleGet(url, response) {
     filename = 'index.html';
   }
   fs.readFile(filename, function (error, data) {
-    response.writeHead(200, {
-      'Content-Type': getContentType(filename)
-    });
-    response.end(data);
+    function output() {
+      response.writeHead(200, {
+        'Content-Type': getContentType(filename)
+      });
+      response.end(data);
+    }
+
+    if (filename === 'index.html') {
+      fs.readFile('visit', function (error, count) {
+        if (error) {
+          count = 0;
+        }
+        ++count;
+        data = data.toString().replace("o'_'o", count);
+        output();
+        fs.writeFile('visit', count);
+      });
+    } else {
+      output();
+    }
   });
 }
 
