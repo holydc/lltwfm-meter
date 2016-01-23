@@ -183,7 +183,7 @@ function initBody(center) {
           total += (_data.Afternoon[1] + _data.Evening[1]);
         }
       }
-      message.textContent = 'Total: ' + reserved + ' / ' + total + ' (' + (Math.floor(reserved * 10000 / total) / 100) + ')';
+      message.textContent = 'Total: ' + reserved + ' / ' + total + ' (' + (Math.floor(reserved * 10000 / total) / 100) + '%)';
     };
     xhr.open('GET', 'data.json');
     xhr.send();
