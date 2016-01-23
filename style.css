@@ -1,0 +1,157 @@
+body {
+  color: white;
+  position: relative;
+}
+
+.section {
+  position: absolute;
+}
+
+.VIP {
+  /*background-color: #eb288c;*/
+  background-color: rgba(235, 40, 140, 0.5);
+}
+
+.S {
+  /*background-color: #fabe32;*/
+  background-color: rgba(250, 190, 50, 0.5);
+}
+
+.A {
+  /*background-color: #3bc4eb;*/
+  background-color: rgba(59, 196, 235, 0.5);
+}
+
+.VIP1 {
+  left: 117px;
+  top: 159px;
+  width: 76px;
+  height: 172px;
+}
+
+.VIP2 {
+  left: 200px;
+  top: 126px;
+  width: 91px;
+  height: 205px;
+}
+
+.VIP3 {
+  left: 298px;
+  top: 126px;
+  width: 104px;
+  height: 205px;
+}
+
+.VIP4 {
+  left: 408px;
+  top: 126px;
+  width: 92px;
+  height: 205px;
+}
+
+.VIP5 {
+  left: 507px;
+  top: 160px;
+  width: 76px;
+  height: 171px;
+}
+
+.S1 {
+  left: 117px;
+  top: 337px;
+  width: 76px;
+  height: 186px;
+}
+
+.S2 {
+  left: 200px;
+  top: 337px;
+  width: 91px;
+  height: 186px;
+}
+
+.S3 {
+  left: 298px;
+  top: 337px;
+  width: 103px;
+  height: 147px;
+}
+
+.S4 {
+  left: 409px;
+  top: 337px;
+  width: 91px;
+  height: 186px;
+}
+
+.S5 {
+  left: 507px;
+  top: 337px;
+  width: 76px;
+  height: 186px;
+}
+
+.A1 {
+  left: 117px;
+  top: 528px;
+  width: 76px;
+  height: 214px;
+}
+
+.A2 {
+  left: 200px;
+  top: 528px;
+  width: 92px;
+  height: 214px;
+}
+
+.A3 {
+  left: 298px;
+  top: 528px;
+  width: 104px;
+  height: 214px;
+}
+
+.A4 {
+  left: 409px;
+  top: 528px;
+  width: 92px;
+  height: 214px;
+}
+
+.A5 {
+  left: 507px;
+  top: 528px;
+  width: 76px;
+  height: 214px;
+}
+
+.meter {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.detail {
+  cursor: pointer;
+  position: absolute;
+  transition: all 0.5s;
+}
+
+.detail.expanded {
+  background-color: rgba(0, 0, 0, 0.75);
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.detail.expanded div {
+  display: inline-block;
+  margin-left: 100px;
+  margin-top: 200px;
+  text-align: center;
+  width: 200px;
+}
