@@ -156,13 +156,7 @@ function createDetail(title, data, parent) {
   });
 }
 
-function ready() {
-  var center = document.createElement('center');
-  document.body.appendChild(center);
-
-  createImage('event.jpg', center);
-  center.appendChild(document.createElement('br'));
-
+function initBody(center) {
   var seats = createImage('seats.png', center);
   seats.addEventListener('load', function () {
     var sectionBackground = createSectionBackground(seats, document.body);
@@ -191,11 +185,22 @@ function ready() {
     xhr.send();
   });
   center.appendChild(document.createElement('br'));
-  
+
   var message = document.createElement('span');
   center.appendChild(message);
   message.style.color = 'black';
   message.textContent = 'Loading...';
+}
+
+function ready() {
+  var center = document.createElement('center');
+  document.body.appendChild(center);
+
+  var img = createImage('event.jpg', center);
+  img.addEventListener('load', function () {
+    initBody(center);
+  });
+  center.appendChild(document.createElement('br'));
 }
 
 (function () {
