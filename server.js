@@ -111,7 +111,7 @@ function handleData(response) {
 
 http.createServer(function (request, response) {
   switch (request.url) {
-    case '/data':
+    case '/data.json':
       handleData(response);
       break;
     default:
