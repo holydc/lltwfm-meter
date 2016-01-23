@@ -101,7 +101,7 @@ function update(response) {
 
 function handleData(response) {
   fs.stat(DATA_FILE, function (error, stats) {
-    if (error || (moment().diff(moment(stats.mtime), 'hours') > 720)) {
+    if (error || (moment().diff(moment(stats.mtime), 'hours') > 1)) {
       update(response);
     } else {
       outputDataFile(response);

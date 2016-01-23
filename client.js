@@ -173,7 +173,8 @@ function ready() {
 
   var sectionBackground = createSectionBackground(seats, document.body);
   var sectionForeground = createSectionBackground(seats, document.body, true);
-
+  
+  /*
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
     if (this.readyState !== this.DONE) {
@@ -195,6 +196,26 @@ function ready() {
   };
   xhr.open('GET', 'data');
   xhr.send();
+  */
+  var iframe = document.createElement('iframe');
+  document.body.appendChild(iframe);
+  iframe.style.position = 'absolute';
+  iframe.style.visibility = 'hidden';
+  iframe.addEventListener('load', function (event) {
+    var data = JSON.parse(iframe.contentDocument.body.textContent);
+    var reserved = 0, total = 0;
+    for (var k in data) {
+      if (data.hasOwnProperty(k)) {
+        var _data = data[k];
+        createSection(k, _data, sectionBackground);
+        createDetail(k, _data, sectionForeground);
+        reserved += (_data.Afternoon[0] + _data.Evening[0]);
+        total += (_data.Afternoon[1] + _data.Evening[1]);
+      }
+    }
+    message.textContent = 'Total: ' + reserved + ' / ' + total + ' (' + (Math.floor(reserved * 10000 / total) / 100) + ')';
+  });
+  iframe.src = 'data';
 }
 
 (function () {
