@@ -164,37 +164,38 @@ function ready() {
   center.appendChild(document.createElement('br'));
 
   var seats = createImage('seats.png', center);
+  seats.addEventListener('load', function () {
+    var sectionBackground = createSectionBackground(seats, document.body);
+    var sectionForeground = createSectionBackground(seats, document.body, true);
+    
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState !== this.DONE) {
+        return;
+      }
+      
+      var data = JSON.parse(this.response);
+      var reserved = 0, total = 0;
+      for (var k in data) {
+        if (data.hasOwnProperty(k)) {
+          var _data = data[k];
+          createSection(k, _data, sectionBackground);
+          createDetail(k, _data, sectionForeground);
+          reserved += (_data.Afternoon[0] + _data.Evening[0]);
+          total += (_data.Afternoon[1] + _data.Evening[1]);
+        }
+      }
+      message.textContent = 'Total: ' + reserved + ' / ' + total + ' (' + (Math.floor(reserved * 10000 / total) / 100) + ')';
+    };
+    xhr.open('GET', 'data.json');
+    xhr.send();
+  });
   center.appendChild(document.createElement('br'));
   
   var message = document.createElement('span');
   center.appendChild(message);
   message.style.color = 'black';
   message.textContent = 'Loading...';
-
-  var sectionBackground = createSectionBackground(seats, document.body);
-  var sectionForeground = createSectionBackground(seats, document.body, true);
-
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (this.readyState !== this.DONE) {
-      return;
-    }
-
-    var data = JSON.parse(this.response);
-    var reserved = 0, total = 0;
-    for (var k in data) {
-      if (data.hasOwnProperty(k)) {
-        var _data = data[k];
-        createSection(k, _data, sectionBackground);
-        createDetail(k, _data, sectionForeground);
-        reserved += (_data.Afternoon[0] + _data.Evening[0]);
-        total += (_data.Afternoon[1] + _data.Evening[1]);
-      }
-    }
-    message.textContent = 'Total: ' + reserved + ' / ' + total + ' (' + (Math.floor(reserved * 10000 / total) / 100) + ')';
-  };
-  xhr.open('GET', 'data.json');
-  xhr.send();
 }
 
 (function () {
