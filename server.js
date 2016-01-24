@@ -7,7 +7,9 @@ var querystring = require('querystring');
 
 var moment = require('./moment');
 
-var port = process.env.port || 1337;
+//var port = process.env.port || 1337;
+var port = process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 var games = [
   {title:'Afternoon',id:14223},
@@ -134,4 +136,4 @@ http.createServer(function (request, response) {
       handleGet(request.url, response);
       break;
   }
-}).listen(port);
+}).listen(port, ip);
