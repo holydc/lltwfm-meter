@@ -1,0 +1,10 @@
+{
+  "name": "lltwfm-meter",
+  "version": "0.0.0",
+  "description": "lltwfm-meter",
+  "main": "server.js",
+  "author": {
+    "name": "holydc",
+    "email": ""
+  }
+}
