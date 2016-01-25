@@ -173,17 +173,26 @@ function initBody(center) {
       }
       
       var data = JSON.parse(this.response);
-      var reserved = 0, total = 0;
+      var total = [[0, 0], [0, 0]];
       for (var k in data) {
         if (data.hasOwnProperty(k)) {
           var _data = data[k];
           createSection(k, _data, sectionBackground);
           createDetail(k, _data, sectionForeground);
-          reserved += (_data.Afternoon[0] + _data.Evening[0]);
-          total += (_data.Afternoon[1] + _data.Evening[1]);
+          total[0][0] += _data.Afternoon[0];
+          total[0][1] += _data.Afternoon[1];
+          total[1][0] += _data.Evening[0];
+          total[1][1] += _data.Evening[1];
         }
       }
-      message.textContent = 'Total: ' + reserved + ' / ' + total + ' (' + (Math.floor(reserved * 10000 / total) / 100) + '%)';
+      
+      function formatMessage(title, reserved, total) {
+        return (title + ': ' + reserved + ' / ' + total + '(' + (Math.floor(reserved * 10000 / total) / 100) + '%)');
+      }
+
+      center.lastChild.innerHTML = formatMessage('Afternoon', total[0][0], total[0][1]) 
+          + '<br>' + formatMessage('Evening', total[1][0], total[1][1]) 
+          + '<br>' + formatMessage('Total', total[0][0] + total[1][0], total[0][1] + total[1][1]);
     };
     xhr.open('GET', 'data.json');
     xhr.send();
